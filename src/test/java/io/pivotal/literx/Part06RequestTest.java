@@ -75,15 +75,26 @@ public class Part06RequestTest {
 
 		String log = logConsole.toString().replaceAll(threadInfos, "");
 		assertThat(log)
-				.contains("onSubscribe(FluxZip.ZipCoordinator)\n"
-						+ "request(1)\n"
-						+ "onNext(Person{username='swhite', firstname='Skyler', lastname='White'})\n"
-						+ "request(1)\n"
-						+ "onNext(Person{username='jpinkman', firstname='Jesse', lastname='Pinkman'})\n"
-						+ "request(2)\n"
-						+ "onNext(Person{username='wwhite', firstname='Walter', lastname='White'})\n"
-						+ "onNext(Person{username='sgoodman', firstname='Saul', lastname='Goodman'})\n"
-						+ "onComplete()\n");
+				// Macの場合LF
+//				.contains("onSubscribe(FluxZip.ZipCoordinator)\n"
+//						+ "request(1)\n"
+//						+ "onNext(Person{username='swhite', firstname='Skyler', lastname='White'})\n"
+//						+ "request(1)\n"
+//						+ "onNext(Person{username='jpinkman', firstname='Jesse', lastname='Pinkman'})\n"
+//						+ "request(2)\n"
+//						+ "onNext(Person{username='wwhite', firstname='Walter', lastname='White'})\n"
+//						+ "onNext(Person{username='sgoodman', firstname='Saul', lastname='Goodman'})\n"
+//						+ "onComplete()\n");
+				// Windowsの場合 CRLF
+				.contains("onSubscribe(FluxZip.ZipCoordinator)\r\n"
+						+ "request(1)\r\n"
+						+ "onNext(Person{username='swhite', firstname='Skyler', lastname='White'})\r\n"
+						+ "request(1)\r\n"
+						+ "onNext(Person{username='jpinkman', firstname='Jesse', lastname='Pinkman'})\r\n"
+						+ "request(2)\r\n"
+						+ "onNext(Person{username='wwhite', firstname='Walter', lastname='White'})\r\n"
+						+ "onNext(Person{username='sgoodman', firstname='Saul', lastname='Goodman'})\r\n"
+						+ "onComplete()\r\n");
 	}
 
 //========================================================================================
@@ -96,12 +107,20 @@ public class Part06RequestTest {
 				.verifyComplete();
 
 		assertThat(logConsole.toString())
-				.isEqualTo("Starring:\n"
-						+ "Skyler White\n"
-						+ "Jesse Pinkman\n"
-						+ "Walter White\n"
-						+ "Saul Goodman\n"
-						+ "The end!\n");
+				// Macの場合LF
+//				.isEqualTo("Starring:\n"
+//						+ "Skyler White\n"
+//						+ "Jesse Pinkman\n"
+//						+ "Walter White\n"
+//						+ "Saul Goodman\n"
+//						+ "The end!\n");
+				// Windowsの場合 CRLF
+				.isEqualTo("Starring:\r\n"
+				+ "Skyler White\r\n"
+				+ "Jesse Pinkman\r\n"
+				+ "Walter White\r\n"
+				+ "Saul Goodman\r\n"
+				+ "The end!\r\n");
 	}
 
 }
